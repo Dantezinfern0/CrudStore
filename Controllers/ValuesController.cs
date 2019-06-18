@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace crudstore.Controllers
 {
     [Route("api/[controller]")]
@@ -12,7 +13,7 @@ namespace crudstore.Controllers
     {
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<List<string>> Get()
         {
             return new string[] { "value1", "value2" };
         }
