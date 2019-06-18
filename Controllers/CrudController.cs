@@ -12,18 +12,22 @@ namespace crudstore.Controllers
   public class CrudController : ControllerBase
   {
     // GET api/values
-    // [HttpGet]
-    // public ActionResult<List<CrudItem>> Get()
-    // {
-    //     return new string<List> { "value1", "value2" };
-    // }
+    [HttpGet]
+    public ActionResult<List<CrudItem>> Get()
+    {
+      var db = new DatabaseContext();
+      var rv = db.CrudItems;
+      return rv.ToList();
+    }
 
     // GET api/values/5
-    [HttpGet("{id}")]
-    public ActionResult<string> Get(int id)
-    {
-      return "value";
-    }
+    // [HttpGet]
+    // public ActionResult<CrudItem> GetSingleItem(SKU)
+    // {
+    //   var db = new DatabaseContext();
+    //   var rv = db.CrudItems;
+    //   return rv;
+    // }
 
     // POST api/values
     // first thing I'm doing on this page to get a reading
