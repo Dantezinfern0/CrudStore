@@ -7,9 +7,9 @@ namespace crudstore
     public int Id { get; set; }
     public int SKU { get; set; }
     public string Name { get; set; }
-    public string Description { get; set; }
-    public int NumberInStock { get; set; }
-    public decimal Price { get; set; }
-    public DateTime DateOrdered { get; set; }
+    public string Description { get; set; } = "gross";
+    public int NumberInStock { get; set; } = 1;
+    public decimal Price { get; set; } = 10.00m;
+    public DateTime DateOrdered { get; set; } = DateTime.Now;
   }
 }
