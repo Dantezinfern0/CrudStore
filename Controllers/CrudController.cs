@@ -12,6 +12,7 @@ namespace crudstore.Controllers
   public class CrudController : ControllerBase
   {
     // GET api/values
+    // Finished and working
     [HttpGet]
     public ActionResult<List<CrudItem>> Get()
     {
@@ -21,12 +22,14 @@ namespace crudstore.Controllers
     }
 
     // GET api/values/5
-    // current proj
-    [HttpGet("{Id}")]
-    public ActionResult<CrudItem> GetSingleItem(int Id)
+    // Finished Works with a SKU
+    // .Find only works with an Primary key Id
+    [HttpGet("{SKU}")]
+    public ActionResult<CrudItem> GetSingleItem(int SKU)
     {
       var db = new DatabaseContext();
-      var rv = db.CrudItems.Find(Id);
+      var rv = db.CrudItems.FirstOrDefault(f => f.SKU == SKU);
+      db.SaveChanges();
       return rv;
     }
 
@@ -43,14 +46,33 @@ namespace crudstore.Controllers
 
     // PUT api/values/5
     [HttpPut("{id}")]
-    public void Put(int id, [FromBody] string value)
+    public ActionResult<CrudItem> PutCrudEdit(int id, [FromBody]CrudItem value)
     {
+      var db = new DatabaseContext();
+      var oldCrud = db.CrudItems.FirstOrDefault(f => f.Id == id);
+      oldCrud.Description = value.Description;
+      oldCrud.NumberInStock = value.NumberInStock;
+      oldCrud.Price = value.Price;
+      db.SaveChanges();
+      return oldCrud;
     }
 
     // DELETE api/values/5
-    [HttpDelete("{id}")]
-    public void Delete(int id)
+    [HttpDelete("{SKU}")]
+    public ActionResult DeleteCrud(int SKU)
     {
+      var db = new DatabaseContext();
+      var deleteCrud = db.CrudItems.FirstOrDefault(f => f.SKU == SKU);
+      if (deleteCrud == null)
+      {
+        return NotFound();
+      }
+      else
+      {
+        db.CrudItems.Remove(deleteCrud);
+        db.SaveChanges();
+        return Ok();
+      }
     }
   }
 }
