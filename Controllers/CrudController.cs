@@ -21,16 +21,17 @@ namespace crudstore.Controllers
     }
 
     // GET api/values/5
-    // [HttpGet]
-    // public ActionResult<CrudItem> GetSingleItem(SKU)
-    // {
-    //   var db = new DatabaseContext();
-    //   var rv = db.CrudItems;
-    //   return rv;
-    // }
+    // current proj
+    [HttpGet("{Id}")]
+    public ActionResult<CrudItem> GetSingleItem(int Id)
+    {
+      var db = new DatabaseContext();
+      var rv = db.CrudItems.Find(Id);
+      return rv;
+    }
 
     // POST api/values
-    // first thing I'm doing on this page to get a reading
+    // finished and working
     [HttpPost]
     public ActionResult<CrudItem> Post([FromBody] CrudItem data)
     {
