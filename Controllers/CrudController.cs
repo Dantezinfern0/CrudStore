@@ -38,7 +38,7 @@ namespace crudstore.Controllers
       var rv = db.CrudItems.FirstOrDefault(f => f.Id == Id);
       return rv;
     }
-    [HttpGet("OutOfStock")]
+    [HttpGet("outofstock")]
     public ActionResult<List<CrudItem>> GetOutOfStock()
     {
       var db = new DatabaseContext();
@@ -70,7 +70,7 @@ namespace crudstore.Controllers
     }
 
     // DELETE api/values/5
-    [HttpDelete("{SKU}")]
+    [HttpDelete("delete/{SKU}")]
     public ActionResult DeleteCrud(int SKU)
     {
       var db = new DatabaseContext();
