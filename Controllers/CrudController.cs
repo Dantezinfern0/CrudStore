@@ -25,18 +25,30 @@ namespace crudstore.Controllers
     // Finished Works with a SKU
     // .Find only works with an Primary key Id
     [HttpGet("{SKU}")]
-    public ActionResult<CrudItem> GetSingleItem(int SKU)
+    public ActionResult<CrudItem> GetSingleItemBySKU(int SKU)
     {
       var db = new DatabaseContext();
       var rv = db.CrudItems.FirstOrDefault(f => f.SKU == SKU);
-      db.SaveChanges();
       return rv;
     }
-
+    [HttpGet("single/{Id}")]
+    public ActionResult<CrudItem> GetSingleItem(int Id)
+    {
+      var db = new DatabaseContext();
+      var rv = db.CrudItems.FirstOrDefault(f => f.Id == Id);
+      return rv;
+    }
+    [HttpGet("OutOfStock")]
+    public ActionResult<List<CrudItem>> GetOutOfStock()
+    {
+      var db = new DatabaseContext();
+      var noStock = db.CrudItems.Where(w => w.NumberInStock == 0).ToList();
+      return noStock;
+    }
     // POST api/values
     // finished and working
     [HttpPost]
-    public ActionResult<CrudItem> Post([FromBody] CrudItem data)
+    public ActionResult<CrudItem> PostAddCrud([FromBody] CrudItem data)
     {
       var db = new DatabaseContext();
       db.CrudItems.Add(data);
