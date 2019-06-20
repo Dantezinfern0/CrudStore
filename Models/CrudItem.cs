@@ -1,6 +1,6 @@
 using System;
 
-namespace crudstore
+namespace crudstore.Models
 {
   public class CrudItem
   {
@@ -11,5 +11,7 @@ namespace crudstore
     public int NumberInStock { get; set; } = 1;
     public decimal Price { get; set; } = 10.00m;
     public DateTime DateOrdered { get; set; } = DateTime.Now;
+    public int? LocationId { get; set; }
+    public Location Location { get; set; }
   }
 }
