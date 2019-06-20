@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using crudstore.Models;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace crudstore.Controllers
 {
@@ -14,11 +15,12 @@ namespace crudstore.Controllers
     // GET api/values
     // Finished and working
     [HttpGet]
-    public ActionResult<List<CrudItem>> Get()
+    public ActionResult<List<CrudItem>> GetAllCrud([FromQuery] int store_number)
     {
+
       var db = new DatabaseContext();
-      var rv = db.CrudItems;
-      return rv.ToList();
+      var data = db.Locations.Include(i => i.CrudItems).FirstOrDefault(u => u.StoreNumber == store_number);
+      return data.CrudItems;
     }
 
     // GET api/values/5
@@ -47,6 +49,14 @@ namespace crudstore.Controllers
     }
     // POST api/values
     // finished and working
+    [HttpPost("location")]
+    public ActionResult<Location> PostAddLocation([FromBody] Location data)
+    {
+      var db = new DatabaseContext();
+      db.Locations.Add(data);
+      db.SaveChanges();
+      return data;
+    }
     [HttpPost]
     public ActionResult<CrudItem> PostAddCrud([FromBody] CrudItem data)
     {

@@ -11,7 +11,7 @@ namespace crudstore.Models
     public int NumberInStock { get; set; } = 1;
     public decimal Price { get; set; } = 10.00m;
     public DateTime DateOrdered { get; set; } = DateTime.Now;
-    public int? LocationId { get; set; }
+    public int? LocationId { get; set; } = 1234;
     public Location Location { get; set; }
   }
 }

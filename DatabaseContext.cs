@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using crudstore.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -29,7 +30,7 @@ namespace crudstore
       {
         var envConn = Environment.GetEnvironmentVariable("DATABASE_URL");
 #warning Be sure to update to your correct connection string to the point to the correct database
-        var conn = "server=localhost;database=SdgTemplate";
+        var conn = "server=localhost;database=CrudStore";
         if (envConn != null)
         {
           conn = ConvertPostConnectionToConnectionString(envConn);
@@ -44,5 +45,6 @@ namespace crudstore
       modelBuilder.HasAnnotation("ProductVersion", "2.2.0-rtm-35687");
     }
     public DbSet<CrudItem> CrudItems { get; set; }
+    public DbSet<Location> Locations { get; set; }
   }
 }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using crudstore;
@@ -9,9 +10,10 @@ using crudstore;
 namespace crudstore.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20190620174025_DbContext updated")]
+    partial class DbContextupdated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,8 +58,6 @@ namespace crudstore.Migrations
 
                     b.Property<string>("PhoneNumber");
 
-                    b.Property<int>("StoreNumber");
-
                     b.HasKey("Id");
 
                     b.ToTable("Locations");
@@ -66,7 +66,7 @@ namespace crudstore.Migrations
             modelBuilder.Entity("crudstore.Models.CrudItem", b =>
                 {
                     b.HasOne("crudstore.Models.Location", "Location")
-                        .WithMany("CrudItems")
+                        .WithMany()
                         .HasForeignKey("LocationId");
                 });
 #pragma warning restore 612, 618
