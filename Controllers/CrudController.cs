@@ -15,12 +15,14 @@ namespace crudstore.Controllers
     // GET api/values
     // Finished and working
     [HttpGet]
-    public ActionResult<List<CrudItem>> GetAllCrud([FromQuery] int store_number)
+    public ActionResult<List<CrudItem>> GetAllCrud()
     {
 
+
       var db = new DatabaseContext();
-      var data = db.Locations.Include(i => i.CrudItems).FirstOrDefault(u => u.StoreNumber == store_number);
-      return data.CrudItems;
+      var rv = db.CrudItems;
+      return rv.ToList();
+
     }
 
     // GET api/values/5
