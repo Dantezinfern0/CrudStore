@@ -17,12 +17,9 @@ namespace crudstore.Controllers
     [HttpGet]
     public ActionResult<List<CrudItem>> GetAllCrud()
     {
-
-
       var db = new DatabaseContext();
       var rv = db.CrudItems;
       return rv.ToList();
-
     }
 
     // GET api/values/5
@@ -51,14 +48,14 @@ namespace crudstore.Controllers
     }
     // POST api/values
     // finished and working
-    [HttpPost("location")]
-    public ActionResult<Location> PostAddLocation([FromBody] Location data)
-    {
-      var db = new DatabaseContext();
-      db.Locations.Add(data);
-      db.SaveChanges();
-      return data;
-    }
+    // [HttpPost("location{k}")]
+    // public ActionResult<CrudItem> PostAddLocation(int k)
+    // {
+    //   var db = new DatabaseContext();
+    //   // db.CrudItems.LocationId.Add(k);
+    //   db.SaveChanges();
+    //   return k;
+    // }
     [HttpPost]
     public ActionResult<CrudItem> PostAddCrud([FromBody] CrudItem data)
     {
@@ -77,6 +74,7 @@ namespace crudstore.Controllers
       oldCrud.Description = value.Description;
       oldCrud.NumberInStock = value.NumberInStock;
       oldCrud.Price = value.Price;
+      oldCrud.Name = value.Name;
       db.SaveChanges();
       return oldCrud;
     }
