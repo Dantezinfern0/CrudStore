@@ -26,11 +26,11 @@ namespace crudstore.Controllers
       db.SaveChanges();
       return data;
     }
-    [HttpGet("fk")]
-    public ActionResult<List<CrudItem>> GetAllLocation([FromQuery] int LocationId)
+    [HttpGet]
+    public ActionResult<List<CrudItem>> GetAllLocation([FromQuery] int byLocation)
     {
       var db = new DatabaseContext();
-      var data = db.Locations.Include(i => i.CrudItems).FirstOrDefault(u => u.StoreNumber == LocationId);
+      var data = db.Locations.Include(i => i.CrudItems).FirstOrDefault(u => u.StoreNumber == byLocation);
       return data.CrudItems;
     }
     [HttpPut("{id}")]

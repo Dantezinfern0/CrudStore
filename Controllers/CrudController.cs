@@ -46,16 +46,17 @@ namespace crudstore.Controllers
       var noStock = db.CrudItems.Where(w => w.NumberInStock == 0).ToList();
       return noStock;
     }
-    // POST api/values
-    // finished and working
-    // [HttpPost("location{k}")]
-    // public ActionResult<CrudItem> PostAddLocation(int k)
-    // {
-    //   var db = new DatabaseContext();
-    //   // db.CrudItems.LocationId.Add(k);
-    //   db.SaveChanges();
-    //   return k;
-    // }
+    // PUT LocationId/values
+    // This is a work in progress
+    [HttpPut("locationchange{item}/")]
+    public ActionResult<CrudItem> PostAddCrud(int item, [FromQuery]int? locationId)
+    {
+     var db = new DatabaseContext();
+      var oldCrud = db.CrudItems.FirstOrDefault(f => f.Id == item);
+      oldCrud.LocationId = locationId;
+      db.SaveChanges();
+      return oldCrud;
+    }
     [HttpPost]
     public ActionResult<CrudItem> PostAddCrud([FromBody] CrudItem data)
     {
