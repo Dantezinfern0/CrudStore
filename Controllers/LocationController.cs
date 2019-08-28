@@ -18,7 +18,7 @@ namespace crudstore.Controllers
       var rv = db.Locations;
       return rv.ToList();
     }
-    [HttpPost("shitshit")]
+    [HttpPost("addlocation")]
     public ActionResult<Location> PostAddLocation([FromBody] Location data)
     {
       var db = new DatabaseContext();
