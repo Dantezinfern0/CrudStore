@@ -1,23 +1,8 @@
-# Defualt Template for SDG .NET Course
+# Full Stack Dotnet Application
 
-This is the default template for a simple .NET Core Web API. This template has: 
+Create
+Read
+Update
+Delete
 
-- CORS Enabled
-- Postgres & EF Core
-- Swagger
-- Ready for Docker Deployment
-
-to use:
-
-- [ ] Update your database name in `DatabaseContext.cs`
-
-to Deploy to heroku:
-- [ ] create a web app on heroku, make sure to have the CLI downloaded, installed, logged in and be logged into the container via heroku. 
-- [ ] Update your `dockerfile` to use your `*.dll` file instead of `dotnet-sdg-template.dll` 
-- [ ] Update the deploy script:
-    - [ ] change `sdg-template-image` to `your-project-name-image`
-    - [ ] change `heroku-web-app` to your web app name on heroku
-
-## PROTIP: 
-
-When you are complete with the project and have turned it in to your instructor, update this read me with details about the assignment. 
+Above are the words that are contained in the acronym CRUD that I used to name this app.  This is an app I wrote for training and learning to build an API with postgreSQL and Dotnet.  My goals are to be able to execute the basic CRUD operations on the database.
